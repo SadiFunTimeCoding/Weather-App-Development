@@ -354,6 +354,7 @@
 /Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/bin/Debug/net8.0-ios/iossimulator-arm64/Microsoft.Maui.Controls.HotReload.Forms.dll
 /Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/bin/Debug/net8.0-ios/iossimulator-arm64/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
 /Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/bin/Debug/net8.0-ios/iossimulator-arm64/Microsoft.VisualStudio.DesignTools.TapContract.dll
+/Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/obj/Debug/net8.0-ios/iossimulator-arm64/WeatherMauiApp.sourcelink.json
 /Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/obj/Debug/net8.0-ios/iossimulator-arm64/resourcestamps/Microsoft.Maui.Controls.HotReload.Forms.stamp
 /Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/obj/Debug/net8.0-ios/iossimulator-arm64/resourcestamps/Microsoft.VisualStudio.DesignTools.MobileTapContracts.stamp
 /Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/obj/Debug/net8.0-ios/iossimulator-arm64/resourcestamps/Microsoft.VisualStudio.DesignTools.TapContract.stamp
