@@ -31,3 +31,5 @@ the app boasts a clean and modern user interface. Weather icons dynamically repr
 
 Conclusion:
 This demonstration will highlight the app’s modular design, which uses reusable components like SearchBarUc and follows the MVVM (Model-View-ViewModel) architecture. The app’s combination of API integration, local data storage, and responsive UI ensures a seamless and engaging user experience. The project is future-ready, with the potential to incorporate additional features such as weather alerts or interactive maps.
+
+links: https://youtu.be/dQkRNJLKLkc
