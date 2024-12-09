@@ -2,6 +2,10 @@
 
 Weather App Development.
 
+(Issues with trying to upload normally. Had to do ZIP had no other options, as I really tried everyting). 
+(My personal github worked.)
+
+
 Motivation:
 Living in the UK, where the weather is notoriously unpredictable and often far from ideal, I was inspired to create a weather app that I could rely on in real life. Designing this app felt like the perfect idea, blending practicality with the opportunity to learn and apply advanced development techniques. This module was challenging, but it pushed me to grow as a developer. I’m proud of what I’ve achieved, and I hope you enjoy exploring the app as much as I enjoyed creating it.
 
