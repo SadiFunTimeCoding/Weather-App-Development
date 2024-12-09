@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="WeatherMauiApp.Views.UserControls.SearchBarUc"
+        StrokeShape="RoundRectangle 8,8,8,8"
+        StrokeThickness="1"
+        Stroke="{StaticResource Tertiary}"
+        BackgroundColor="{StaticResource Primary}"
+        x:Name="EntryBorder">
+    <Border.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS"
+                Value="10,10" />
+            <On Platform="Android"
+                Value="10,0" />
+        </OnPlatform>
+    </Border.Padding>
+    <Grid RowDefinitions="Auto"
+          ColumnDefinitions="Auto,*"
+          Padding="5"
+          ColumnSpacing="7">
+        <Image Grid.Row="0"
+               Grid.Column="0"
+               VerticalOptions="Center"
+               Source="search.png"
+               Aspect="AspectFill"
+               HeightRequest="15"
+               WidthRequest="15">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Command, Source={x:Reference EntryBorder}}" />
+            </Image.GestureRecognizers>
+        </Image>
+        <Entry Grid.Row="0"
+               Grid.Column="1"
+               x:Name="SearchEntry"
+               FontSize="16"
+               TextColor="{StaticResource White}"
+               IsPassword="False"
+               Keyboard="Default"
+               PlaceholderColor="{StaticResource Gray300}"
+               Placeholder="{Binding PlaceholderText, Source={x:Reference EntryBorder}}"
+               Text="{Binding ValueText, Source={x:Reference EntryBorder},Mode=TwoWay}"
+               Completed="SearchEntry_Completed" />
+    </Grid>
+</Border>
+

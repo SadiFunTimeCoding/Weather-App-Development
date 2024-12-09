@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="WeatherMauiApp.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:WeatherMauiApp.Pages"
+       Shell.TabBarTitleColor="{DynamicResource Primary}"
+       BackgroundColor="White"
+       x:Name="shell"
+       Shell.BackgroundColor="White"
+       FlyoutBackgroundColor="White"
+       Shell.FlyoutBehavior="Disabled">
+    <TabBar>
+        <Tab Title="Home"
+             Icon="home.png"
+             Route="HomePage">
+            <ShellContent ContentTemplate="{DataTemplate local:HomePage}" />
+        </Tab>
+        <Tab Title="Favorites"
+             Icon="favourite.png"
+             Route="FavouritesPage">
+            <ShellContent ContentTemplate="{DataTemplate local:FavoriteCitiesPage}" />
+        </Tab>
+    </TabBar>
+</Shell>

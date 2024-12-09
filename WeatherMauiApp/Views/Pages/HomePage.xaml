@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:WeatherMauiApp.Models.ApiModels.ResponseModesl"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Shell.NavBarIsVisible="False"
+             x:Class="WeatherMauiApp.Pages.HomePage"
+             BackgroundColor="{StaticResource Primary}"
+             Title="Home">
+    <Grid RowDefinitions="Auto,*"
+          ColumnDefinitions="*"
+          RowSpacing="0">
+        <ActivityIndicator Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}" />
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              Padding="10,5"
+              ColumnSpacing="10"
+              RowSpacing="10"
+              RowDefinitions="Auto,Auto,Auto"
+              ColumnDefinitions="Auto,*,Auto"
+              IsVisible="{Binding IsNotBusy}">
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   FontSize="14"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   Text="Forecast till"
+                   FontFamily="PoppinsRegular" />
+            <Border Grid.Row="0"
+                    Grid.Column="1"
+                    StrokeShape="RoundRectangle 25,25,25,25"
+                    StrokeThickness="1"
+                    Stroke="{StaticResource Tertiary}"
+                    BackgroundColor="{StaticResource Tertiary}">
+                <Border.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS"
+                        Value="0,10"/>
+                    </OnPlatform>
+                </Border.Padding>
+                <Picker Title="{x:Null}"
+                        Margin="15,0,0,0"
+                        TextColor="{StaticResource White}"
+                        ItemsSource="{Binding Days}"
+                        FontSize="16"
+                        FontFamily="PoppinsSemibold"
+                        SelectedItem="{Binding SelectedDay, Mode=TwoWay}"
+                        BackgroundColor="{StaticResource Tertiary}" />
+            </Border>
+            <Button Grid.Row="0"
+                    Grid.Column="2"
+                    Text="Clear"
+                    FontSize="14"
+                    CornerRadius="24"
+                    Padding="25,0"
+                    TextColor="White"
+                    BackgroundColor="#1E1E45"
+                    FontFamily="PoppinsRegular"
+                    Command="{Binding ClearWeatherForecastCommand}"/>
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   FontSize="14"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   Text="Condition(s)"
+                   FontFamily="PoppinsRegular" />
+            <Border Grid.Row="1"
+                    Grid.Column="1"
+                    StrokeShape="RoundRectangle 25,25,25,25"
+                    StrokeThickness="1"
+                    Stroke="{StaticResource Tertiary}"
+                    BackgroundColor="{StaticResource Tertiary}">
+                <Border.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS"
+                        Value="0,10"/>
+                    </OnPlatform>
+                </Border.Padding>
+                <Picker Title="{x:Null}"
+                        Margin="15,0,0,0"
+                        TextColor="{StaticResource White}"
+                        ItemsSource="{Binding WeatherConditions}"
+                        FontSize="16"
+                        FontFamily="PoppinsSemibold"
+                        SelectedItem="{Binding SelectedWeatherCondition, Mode=TwoWay}"
+                        BackgroundColor="{StaticResource Tertiary}" />
+            </Border>
+            <Button Grid.Row="1"
+                    Grid.Column="2"
+                    FontSize="14"
+                    CornerRadius="24"
+                    Padding="25,0"
+                     TextColor="White"
+                    BackgroundColor="#1E1E45"
+                    FontFamily="PoppinsRegular"
+                    Text="Clear"
+                    Command="{Binding ClearWeatherConditionCommand}"/>
+            <BoxView Grid.Row="2"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     HeightRequest="1"
+                     Color="{StaticResource White}" />
+        </Grid>
+        <ScrollView Grid.Row="1"
+                    Orientation="Vertical"
+                    Padding="5,0">
+            <Grid RowDefinitions="6*,Auto,3*"
+                  ColumnDefinitions="*"
+                  RowSpacing="0">
+                <FlexLayout Grid.Row="0"
+                            Grid.Column="0"
+                            IsVisible="{Binding IsNotBusy}"
+                            AlignItems="Center"
+                            JustifyContent="SpaceBetween"
+                            Direction="Column">
+                    <StackLayout Padding="0,20,0,0">
+                        <Label Text="{Binding CurrentLocation.Name}"
+                               HorizontalTextAlignment="Center"
+                               FontSize="32" />
+                        <Label Text="{Binding CurrentLocation.Country}"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,-5,0,0"
+                               FontSize="12" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center"
+                                 Margin="0, 5, 0, 0">
+                        <Image HeightRequest="65"
+                               WidthRequest="65"
+                               Aspect="AspectFill"
+                               Source="{Binding CurrentWeather.Condition.Icon, StringFormat='https:{0}'}" />
+                        <StackLayout VerticalOptions="Center"
+                                     Padding="10, 0, 0, 0">
+                            <Label Text="Today"
+                                   FontSize="20"
+                                   FontFamily="PoppinsSemibold"
+                                   HorizontalTextAlignment="Start" />
+                            <Label Text="{Binding CurrentLocation.Localtime}"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Center"
+                                   FontFamily="PoppinsLight" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical"
+                                 Spacing="0">
+                        <StackLayout Orientation="Horizontal"
+                                     Margin="22, 0, 0, 0"
+                                     HorizontalOptions="Center">
+                            <Label Text="{Binding CurrentWeather.TempC}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   FontSize="120"
+                                   Margin="0, -30, 0, 0"
+                                   FontFamily="PoppinsRegular" />
+                            <Label Text="°C"
+                                   FontSize="22"
+                                   FontFamily="PoppinsLight"
+                                   Margin="0, 5, 0, 0" />
+                        </StackLayout>
+                        <Label Style="{StaticResource detailsStyle}"
+                               Margin="0, -30, 0, 0"
+                               Text="{Binding CurrentWeather.FeelslikeC, StringFormat='Feels like {0:F1} °C'}" />
+                        <Border Stroke="{StaticResource Background}"
+                                Margin="0, 5, 0, 0"
+                                HorizontalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="30" />
+                            </Border.StrokeShape>
+                            <Label Text="{Binding CurrentWeather.Condition.Text}"
+                                   FontFamily="PoppinsSemibold"
+                                   Style="{StaticResource weatherStatusStyle}" />
+                        </Border>
+                        <FlexLayout AlignItems="Center"
+                                    JustifyContent="Center"
+                                    Margin="0, 10, 0, 0">
+                            <HorizontalStackLayout Margin="0, 0, 10, 0">
+                                <Image Source="sunrise.png"
+                                       HeightRequest="20"
+                                       WidthRequest="20" />
+                                <Label Text="{Binding WeatherForecastDays[0].Astro.Sunrise, StringFormat='Sunrise: {0}'}"
+                                       Style="{StaticResource detailsStyle}"
+                                       Margin="0"
+                                       FontSize="12"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout>
+                                <Image Source="sunset.png"
+                                       HeightRequest="20"
+                                       WidthRequest="20" />
+                                <Label Text="{Binding WeatherForecastDays[0].Astro.Sunset, StringFormat='Sunset: {0}'}"
+                                       Style="{StaticResource detailsStyle}"
+                                       Margin="0"
+                                       FontSize="12"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </FlexLayout>
+                    </StackLayout>
+                    <FlexLayout AlignItems="Center"
+                                JustifyContent="SpaceEvenly">
+                        <HorizontalStackLayout HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                            <Image Source="humidity.png"
+                                   HeightRequest="20"
+                                   WidthRequest="20" />
+                            <Label Text="{Binding CurrentWeather.Humidity, StringFormat='{0:F1}%'}"
+                                   FontSize="12"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                            <Image Source="barometer.png"
+                                   HeightRequest="20"
+                                   WidthRequest="20" />
+                            <Label Text="{Binding CurrentWeather.PressureMb, StringFormat='{0:F0}mBar'}"
+                                   FontSize="12"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                            <Image Source="wind.png"
+                                   HeightRequest="20"
+                                   WidthRequest="20" />
+                            <Label Text="{Binding CurrentWeather.WindKph, StringFormat='{0:F1}km/h'}"
+                                   FontSize="12"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </FlexLayout>
+                </FlexLayout>
+                <VerticalStackLayout Grid.Row="1"
+                                     Grid.Column="0">
+                    <Label FontSize="20"
+                           Margin="10,30,0,5"
+                           Text="Next 24 Hours"
+                           IsVisible="{Binding IsNotBusy}"
+                           FontFamily="PoppinsSemibold" />
+                    <CollectionView ItemsLayout="HorizontalList"
+                                    IsVisible="{Binding IsNotBusy}"
+                                    HeightRequest="125"
+                                    Margin="0, 0, 0, 0"
+                                    BackgroundColor="Transparent"
+                                    ItemsSource="{Binding WeatherForecastHours}"
+                                    VerticalScrollBarVisibility="Never"
+                                    HorizontalScrollBarVisibility="Never">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:HourResponseApiModel">
+                                <FlexLayout WidthRequest="90">
+                                    <Frame BackgroundColor="#1E1E45"
+                                           CornerRadius="30"
+                                           BorderColor="#2A2C53"
+                                           WidthRequest="80"
+                                           HeightRequest="125"
+                                           Margin="5,0">
+                                        <VerticalStackLayout WidthRequest="80">
+                                            <Label Text="{Binding Time, StringFormat='{0}'}"
+                                                   FontFamily="PoppinsLight"
+                                                   HorizontalTextAlignment="Center" />
+                                            <Image WidthRequest="30"
+                                                   HeightRequest="40"
+                                                   Source="{Binding Condition.Icon, StringFormat='https:{0}'}" />
+                                            <Label Text="{Binding TempC, StringFormat='{0:F1} °C'}"
+                                                   FontSize="15"
+                                                   FontFamily="PoppinsSemibold"
+                                                   HorizontalTextAlignment="Center" />
+                                        </VerticalStackLayout>
+                                    </Frame>
+                                </FlexLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+                <toolkit:Expander Grid.Row="2"
+                                  Margin="0,10,0,0"
+                                  IsVisible="{Binding IsForecastVisible}"
+                                  IsExpanded="{Binding IsForecastExpanded,Mode=TwoWay}">
+                    <toolkit:Expander.Header>
+                        <Border StrokeShape="RoundRectangle 25,25,25,25"
+                                Padding="15,10"
+                                StrokeThickness="1"
+                                IsVisible="{Binding IsNotBusy}"
+                                Stroke="{StaticResource Tertiary}"
+                                BackgroundColor="{StaticResource Tertiary}">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding IsForecastExpanded}"
+                                             Value="True">
+                                    <Setter Property="StrokeShape"
+                                            Value="RoundRectangle 25,25,1,1" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding IsForecastExpanded}"
+                                             Value="False">
+                                    <Setter Property="StrokeShape"
+                                            Value="RoundRectangle 25,25,25,25" />
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Grid RowDefinitions="Auto"
+                                  ColumnDefinitions="*,Auto">
+                                <Label Grid.Column="0"
+                                       Text="Forecast"
+                                       VerticalOptions="Center"
+                                       VerticalTextAlignment="Center"
+                                       FontFamily="PoppinsSemibold"
+                                       FontSize="20" />
+                                <Image Grid.Column="1"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center"
+                                       HeightRequest="20"
+                                       WidthRequest="20"
+                                       Aspect="AspectFill"
+                                       Margin="0,0,5,0"
+                                       Source="arrow_down.png">
+                                    <Image.Triggers>
+                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding IsForecastExpanded}"
+                                                     Value="False">
+                                            <Setter Property="Source"
+                                                    Value="arrow_down.png" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding IsForecastExpanded}"
+                                                     Value="True">
+                                            <Setter Property="Source"
+                                                    Value="up_arrow.png" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                            </Grid>
+                        </Border>
+                    </toolkit:Expander.Header>
+                    <StackLayout IsVisible="{Binding IsNotBusy}"
+                                 Grid.Column="0"
+                                 BackgroundColor="{StaticResource Tertiary}"
+                                 Margin="0.5, 0, 0.5, 0">
+                        <Grid ColumnDefinitions="*, 90, 80, 60, 60"
+                              Margin="20, 10"
+                              IsVisible="{Binding IsNotBusy}">
+                            <Label FontSize="12"
+                                   Text="Avg"
+                                   Grid.Column="1"
+                                   FontFamily="PoppinsSemibold"
+                                   HorizontalTextAlignment="Center" />
+                            <Label FontSize="12"
+                                   Text="Min"
+                                   Grid.Column="3"
+                                   FontFamily="PoppinsSemibold"
+                                   HorizontalTextAlignment="Center" />
+                            <Label FontSize="12"
+                                   Text="Max"
+                                   Grid.Column="4"
+                                   FontFamily="PoppinsSemibold"
+                                   HorizontalTextAlignment="Center" />
+                        </Grid>
+                        <CollectionView ItemsSource="{Binding WeatherForecastDays}"
+                                        VerticalScrollBarVisibility="Never"
+                                        IsVisible="{Binding IsNotBusy}"
+                                        HorizontalScrollBarVisibility="Never"
+                                        Margin="20, 0">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:ForecastDayResponseApiModel">
+                                    <Grid ColumnDefinitions="*, 90, 80, 60, 60"
+                                          RowDefinitions="50"
+                                          VerticalOptions="Center">
+                                        <Label Text="{Binding Date}"
+                                               Grid.Column="0"
+                                               Grid.Row="0"
+                                               FontFamily="PoppinsSemibold" />
+                                        <Label Text="{Binding Day.AvgtempC, StringFormat='{0:F1} °C'}"
+                                               HorizontalTextAlignment="Center"
+                                               Grid.Row="0"
+                                               Grid.Column="1" />
+                                        <Image HeightRequest="34"
+                                               WidthRequest="34"
+                                               Grid.Column="2"
+                                               Margin="0, 0, 0, 23"
+                                               Grid.Row="0"
+                                               Source="{Binding Day.Condition.Icon, StringFormat='https:{0}'}" />
+                                        <Label Text="{Binding Day.MintempC, StringFormat='{0:F1} °C'}"
+                                               HorizontalTextAlignment="Center"
+                                               Grid.Row="0"
+                                               Grid.Column="3" />
+                                        <Label Text="{Binding Day.MaxtempC, StringFormat='{0:F1} °C'}"
+                                               HorizontalTextAlignment="Center"
+                                               Grid.Row="0"
+                                               Grid.Column="4" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </toolkit:Expander>
+            </Grid>
+        </ScrollView>
+        <ImageButton Grid.Row="1"
+                     Grid.Column="0"
+                     VerticalOptions="Start"
+                     HorizontalOptions="End"
+                     HeightRequest="50"
+                     WidthRequest="50"
+                     Margin="0,80,20,0"
+                     IsVisible="{Binding IsNotBusy}"
+                     BackgroundColor="Transparent"
+                     Command="{Binding ToggleFavoriteCommand}"
+                     Source="heart_fill.png">
+            <ImageButton.Triggers>
+                <DataTrigger TargetType="ImageButton"
+                             Binding="{Binding IsFavorite}"
+                             Value="True">
+                    <Setter Property="Source"
+                            Value="heart_fill.png" />
+                </DataTrigger>
+                <DataTrigger TargetType="ImageButton"
+                             Binding="{Binding IsFavorite}"
+                             Value="False">
+                    <Setter Property="Source"
+                            Value="heart.png" />
+                </DataTrigger>
+            </ImageButton.Triggers>
+        </ImageButton>
+    </Grid>
+</ContentPage>

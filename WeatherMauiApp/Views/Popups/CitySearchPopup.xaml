@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="WeatherMauiApp.Views.Popups.CitySearchPopup"
+                  xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+                  xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
+                  xmlns:uc="clr-namespace:WeatherMauiApp.Views.UserControls"
+                  xmlns:vm="clr-namespace:WeatherMauiApp.ViewModels.Popups"
+                  Title="Search city"
+                  Shell.NavBarIsVisible="False"
+                  BackgroundColor="#80000000"
+                  x:Name="ThisPopup">
+    <mopups:PopupPage.Animation>
+        <mopupsanim:MoveAnimation DurationIn="700"
+                                  EasingIn="SpringIn"
+                                  PositionIn="Bottom"
+                                  PositionOut="Bottom" />
+    </mopups:PopupPage.Animation>
+    <Border VerticalOptions="EndAndExpand"
+            HorizontalOptions="FillAndExpand"
+            HeightRequest="500"
+            StrokeShape="RoundRectangle 25,25,1,1"
+            StrokeThickness="1"
+            Stroke="{StaticResource Primary}"
+            BackgroundColor="{StaticResource Primary}">
+        <Grid BackgroundColor="Transparent"
+              RowSpacing="10"
+              RowDefinitions="Auto,Auto,*"
+              ColumnDefinitions="*">
+            <ImageButton Grid.Row="0"
+                         Grid.Column="0"
+                         Source="cross_popup.png"
+                         Aspect="AspectFill"
+                         VerticalOptions="Start"
+                         HorizontalOptions="End"
+                         CornerRadius="1"
+                         HeightRequest="44"
+                         WidthRequest="44"
+                         Margin="0,10,10,0"
+                         Command="{Binding CloseCommand}" />
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   HorizontalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   FontSize="25"
+                   Text="Search city"
+                   Margin="0,20,0,0" />
+            <uc:SearchBarUc Grid.Row="1"
+                            BackgroundColor="{StaticResource Primary}"
+                            FocusColor="{StaticResource Primary}"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            PlaceholderText="Search city"
+                            ValueText="{Binding SearchText,Mode=TwoWay}"
+                            Margin="10,0"
+                            Command="{Binding SearchCommand}" />
+            <CollectionView Grid.Row="2"
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            BackgroundColor="Transparent"
+                            Margin="10,0,10,10"
+                            x:Name="CityListView"
+                            ItemsSource="{Binding CityList}"
+                            SelectedItem="{Binding CurrentCity,Mode=TwoWay}"
+                            SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No city to display"
+                           FontSize="16"
+                           IsVisible="{Binding IsNotBusy, Source={RelativeSource AncestorType={x:Type vm:CitySearchPopupViewModel}}}"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 8,8,8,8"
+                                StrokeThickness="1"
+                                Stroke="{StaticResource Primary}"
+                                BackgroundColor="{StaticResource Tertiary}">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddToFavoritesCommand, Source={RelativeSource AncestorType={x:Type vm:CitySearchPopupViewModel}}}"
+                                                      CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
+                            <Grid Padding="15"
+                                  RowDefinitions="Auto"
+                                  ColumnDefinitions="Auto"
+                                  ColumnSpacing="10"
+                                  InputTransparent="True">
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       VerticalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       InputTransparent="True"
+                                       FontSize="16"
+                                       TextColor="{StaticResource White}"
+                                       Text="{Binding Name}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator Grid.Row="1"
+                               Grid.Column="0"
+                               Grid.RowSpan="2"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}" />
+        </Grid>
+    </Border>
+</mopups:PopupPage>

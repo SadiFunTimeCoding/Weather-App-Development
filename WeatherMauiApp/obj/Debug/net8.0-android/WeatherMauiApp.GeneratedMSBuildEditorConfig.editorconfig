@@ -1,0 +1,65 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = true
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0-android
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = WeatherMauiApp
+build_property.ProjectDir = /Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[/Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherMauiApp.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[/Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherMauiApp.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[/Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherMauiApp.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
+
+[/Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherMauiApp.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+
+[/Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/Views/Pages/FavoriteCitiesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherMauiApp.Views.Pages.FavoriteCitiesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/Pages/FavoriteCitiesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/Pages/FavoriteCitiesPage.xaml
+
+[/Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/Views/Pages/HomePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherMauiApp.Views.Pages.HomePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/Pages/HomePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/Pages/HomePage.xaml
+
+[/Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/Views/Popups/CitySearchPopup.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherMauiApp.Views.Popups.CitySearchPopup.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/Popups/CitySearchPopup.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/Popups/CitySearchPopup.xaml
+
+[/Users/sadiyaqubi/Desktop/WeatherMauiApp/WeatherMauiApp/Views/UserControls/SearchBarUc.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherMauiApp.Views.UserControls.SearchBarUc.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/UserControls/SearchBarUc.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/UserControls/SearchBarUc.xaml
